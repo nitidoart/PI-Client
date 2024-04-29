@@ -2,6 +2,8 @@ import styles from './landing.module.css';
 import { Link } from 'react-router-dom';
 import pikachu from '../../assets/img/pika-pika.gif';
 import logo from '../../assets/img/logo.png';
+import Login from '../../components/Login/Login';
+
 
 const Landing = () => {
   
@@ -20,6 +22,7 @@ const Landing = () => {
           </Link>
         </div>
       </div>
+      <Login/>
     </div>
   );
 };
