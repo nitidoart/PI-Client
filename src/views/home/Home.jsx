@@ -2,7 +2,7 @@ import styles from './home.module.css';
 import logo from '../../assets/img/logo.png';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Paginate from '../../components/paginate/Paginate';
 import Loader from '../../utils/loaders/loader-pikachu/Loader';
@@ -21,6 +21,15 @@ const Home = () => {
   const types = useSelector((state) => state.types);
   const noTypeResults = useSelector((state) => state.noTypeResults);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate()
+  const {state} = useLocation()
+
+  const onLogout = () => {
+    navigate('/', {
+      replace: true,
+    })
+  }
 
   useEffect(() => {
     dispatch(getAllTypes());
@@ -92,6 +101,9 @@ const Home = () => {
             <img className={styles.logo} src={logo} alt="logo-pokemon" style={{ width: '100px' }} />
           </Link>
           <SearchBar handleChange={handleChange} />
+          <p>{state?.name}</p>
+          
+          <button onClick={onLogout}>Cerrar sesión</button>
         </div>
 
       </div>
